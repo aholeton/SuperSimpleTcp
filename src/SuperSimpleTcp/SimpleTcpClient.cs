@@ -690,6 +690,12 @@ namespace SuperSimpleTcp
 
             if (_ssl)
             {
+                if (string.IsNullOrEmpty(pfxCertFilename) && string.IsNullOrEmpty(pfxPassword))
+                {
+                    _sslCertCollection = new X509Certificate2Collection();
+                    return;
+                }
+
                 if (string.IsNullOrEmpty(pfxPassword))
                 {
                     _sslCert = new X509Certificate2(pfxCertFilename);
